@@ -26,7 +26,7 @@ const ContentSection = ({ section, sectionKey }) => {
   );
 };
 
-const API_URL = import.meta.env.MODE === "develoment" ? "http://localhost:8000/tutorials" : "/tutorials"
+const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/tutorials" : "/tutorials"
 
 const Tutorials = ({ slug1 }) => {
   const { slug } = useParams();

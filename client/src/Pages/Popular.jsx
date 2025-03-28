@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { User, Eye, Heart, Flame, AlertCircle, ArrowRight } from "lucide-react";
 import LoadingSpinner from "../Components/LoadingSpinner";
 
-const API_URL = import.meta.env.MODE === "develoment" ? "http://localhost:8000/tutorials/popular" : "/tutorials/popular"
+const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/tutorials/popular" : "/tutorials/popular"
 
 const Popular = () => {
     const [popularTutorials, setPopularTutorials] = useState([]);

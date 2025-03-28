@@ -5,6 +5,7 @@ import Tutorials from "./Tutorials";
 import Sidebar from "../Components/Sidebar";
 import { PanelLeftOpen, PanelLeftClose } from "lucide-react"; // Import your chosen icon
 
+const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/tutorials" : "/tutorials"
 
 const Tutorial = () => {
   const { slug } = useParams();
@@ -15,7 +16,7 @@ const Tutorial = () => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8000/tutorials/${slug}`)
+      .post(`${API_URL}/${slug}`)
       .then((res) => {
         setTutorials(res.data.tutorials || []);
         setLoading(false);

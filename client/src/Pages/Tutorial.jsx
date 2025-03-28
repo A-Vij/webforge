@@ -49,12 +49,12 @@ const Tutorial = () => {
       )}
 
       {/* Toggle Button (using Lucide React Icon) */}
-      <button
+      {tutorials.length > 0 && <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         className="fixed top-6 left-4 z-50 bg-purple-600 text-white p-2 rounded-lg shadow-lg flex items-center"
       >
         {!isSidebarOpen ? <PanelLeftOpen size={24} /> : <PanelLeftClose size={24} />} {/* Lucide icon */}
-      </button>
+      </button>}
 
       {/* Main Content */}
       <div className="w-full p-4">

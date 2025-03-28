@@ -32,7 +32,7 @@ const Sidebar = ({ tutorials, onSelect, isOpen, onClose }) => {
 
       {/* Sidebar Content */}
       {tutorials.length < 0 ? <LoadingSpinner />  : 
-      <h2 className="text-xl mt-14 font-bold text-indigo-300">{tutorials[0].topic}</h2>}
+      <h2 className="text-xl mt-14 font-bold text-indigo-300">{tutorials[0].topic}</h2> }
       <div className="overflow-y-auto flex-grow pr-2 mt-4 space-y-2">
         {tutorials.map((tutorial, index) => (
           <div key={index}>

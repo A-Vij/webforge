@@ -13,10 +13,10 @@ const HeroTitle = () => {
                     animate={{ opacity: 1 }}
                     transition={{
                         duration: 0.2,
-                        delay: index * 0.1, // Sequential blinking effect
+                        delay: index * 0.1, 
                     }}
                 >
-                    {char === " " ? "\u00A0" : char} {/* Preserve spaces */}
+                    {char === " " ? "\u00A0" : char} 
                 </motion.span>
             ))}
         </div>

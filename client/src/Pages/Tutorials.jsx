@@ -14,7 +14,7 @@ const ContentSection = ({ section, sectionKey }) => {
 
       {section.file && (
         <div className="mt-6 w-full flex justify-center">
-          <div className="w-full max-w-4xl"> {/* Expands width */}
+          <div className="w-full max-w-4xl"> 
             <Code
               files={{ [`${sectionKey}.html`]: section.file }}
               entryFile={`${sectionKey}.html`}

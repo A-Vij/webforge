@@ -12,7 +12,7 @@ const Tutorial = () => {
   const navigate = useNavigate();
   const [tutorials, setTutorials] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar state
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
 
   useEffect(() => {
     axios
@@ -29,7 +29,7 @@ const Tutorial = () => {
 
   return (
     <div className="relative min-h-screen">
-      {/* Sidebar - Works the same on all screen sizes */}
+      
       {isSidebarOpen && (
         <>
           <Sidebar
@@ -40,7 +40,7 @@ const Tutorial = () => {
             isOpen={isSidebarOpen}
             onClose={() => setIsSidebarOpen(false)}
           />
-          {/* Dark Overlay */}
+
           <div
             className="fixed  inset-0  z-40"
             onClick={() => setIsSidebarOpen(false)}
@@ -48,7 +48,7 @@ const Tutorial = () => {
         </>
       )}
 
-      {/* Toggle Button (using Lucide React Icon) */}
+      
       {tutorials.length > 0 && <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         className="fixed top-6 left-4 z-50 bg-purple-600 text-white p-2 rounded-lg shadow-lg flex items-center"
@@ -56,7 +56,7 @@ const Tutorial = () => {
         {!isSidebarOpen ? <PanelLeftOpen size={24} /> : <PanelLeftClose size={24} />} {/* Lucide icon */}
       </button>}
 
-      {/* Main Content */}
+      
       <div className="w-full p-4">
         <Tutorials key={slug} />
       </div>

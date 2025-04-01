@@ -40,7 +40,7 @@ const Popular = () => {
                         className="bg-black/40 border border-indigo-500/50 rounded-2xl shadow-[0_0_10px_rgba(100,149,237,0.4)] p-6 transition-all duration-150 hover:scale-105 hover:shadow-indigo-500/40"
                     >
                         <div className="flex items-center mb-4">
-                            {/* Profile Image or Default Icon */}
+                            
                             <div className="w-12 h-12 rounded-full flex items-center justify-center mr-4 border border-purple-500">
                                 {tutorial.profileImg ? (
                                     <img 
@@ -95,7 +95,7 @@ const Popular = () => {
                 ))}
             </div>
 
-            {/* If No Popular Tutorials */}
+
             {popularTutorials.length === 0 && (
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}

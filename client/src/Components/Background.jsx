@@ -54,7 +54,7 @@ const Background = ({ children }) => {
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col bg-gradient-to-br from-black via-purple-900 to-black relative overflow-hidden">
+        <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
             {/* Floating Diamonds in Sections with Dynamic Delays */}
             {floatingShapes.map((shape, index) => (
                 <FloatingShape key={index} {...shape} />

@@ -7,7 +7,7 @@ export default function TechCard({ title, description, color }) {
 
     return (
         <div className="relative w-full">
-            {/* Card */}
+            
             <motion.div 
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.95 }} 
@@ -18,7 +18,7 @@ export default function TechCard({ title, description, color }) {
                 <p className="text-gray-300">Click to learn more</p>
             </motion.div>
 
-            {/* Dropdown Section */}
+            
             <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}

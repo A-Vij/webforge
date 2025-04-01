@@ -12,7 +12,7 @@ export default function Home() {
 
     const scrollToContent = () => {
         const section = document.getElementById("card-section");
-        const offset = 100; // Adjust this value as needed
+        const offset = 100; 
         const sectionPosition = section.getBoundingClientRect().top + window.scrollY - offset;
 
         window.scrollTo({
@@ -94,7 +94,7 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Example Usage of Code Component */}
+            
             <div className="w-full py-16">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl font-bold text-white text-center mb-10">
@@ -125,7 +125,7 @@ export default function Home() {
                 </div>
             </div>
             <hr className="my-12 border-gray-400/50 mx-auto w-4/5" />
-            {/* Our Goals Section */}
+            {/* Our Goals */}
             <div id="content-section" className="w-full py-12">
                 <div className="container mx-auto px-6">
                      <h2 className="text-3xl font-bold text-white text-center mb-10">

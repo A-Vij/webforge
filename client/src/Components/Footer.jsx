@@ -5,12 +5,12 @@ export function Footer() {
         <footer className="w-full mt-16 py-6 bg-black/50 backdrop-blur-lg border-t border-gray-700 text-gray-300">
             <div className="max-w-screen-lg mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
                 
-                {/* Logo / Copyright */}
+                
                 <p className="text-sm">
                     © {new Date().getFullYear()} WebForge. All rights reserved.
                 </p>
 
-                {/* Footer Links */}
+                
                 <div className="flex flex-wrap justify-center md:justify-end gap-4">
                     <Link 
                         to="/about" 

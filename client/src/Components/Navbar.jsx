@@ -34,17 +34,17 @@ export function Navbar() {
 
     return (
         <>
-            {/* Navbar */}
+            
             <nav className="fixed top-5 left-1/2 transform -translate-x-1/2 px-5 py-3 
                             bg-black/71 border-4 border-purple-500/50 backdrop-blur-lg shadow-lg rounded-2xl 
                             flex items-center space-x-6 z-50">
                 
-                {/* Logo */}
+                
                 <Link className="text-2xl font-bold text-white" to="/">
                     WebForge
                 </Link>
 
-                {/* Desktop Links */}
+                
                 <div className="hidden md:inline-flex flex justify-center space-x-4">
                     <Link
                         to="/popular"
@@ -80,7 +80,7 @@ export function Navbar() {
                     )}
                 </div>
 
-                {/* Login / Logout */}
+                
                 <div className="hidden md:inline-flex space-x-3">
                     {!user ? (
                         <>
@@ -115,14 +115,13 @@ export function Navbar() {
                         </button>
                     )}
                 </div>
-
-                {/* Mobile Menu Button */}
+                
                 <button onClick={toggleMenu} className="md:hidden text-white focus:outline-none">
                     {menuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </nav>
 
-            {/* Mobile Menu */}
+            
             {menuOpen && (
                 <div className="fixed top-22 left-1/2 transform -translate-x-1/2 max-w-xs bg-black/40 
                                 backdrop-blur-lg shadow-md rounded-xl z-40 md:hidden">

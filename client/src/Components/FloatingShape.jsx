@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const FloatingShape = ({ color, size, left, section, delay }) => {
     let startY, endY;
 
-    // Define the starting and ending positions for each section
+    
     if (section === "top") {
         startY = "-7vh";
         endY = "110vh"; // Stops in the top third

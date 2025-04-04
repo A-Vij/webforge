@@ -23,10 +23,32 @@ const Popular = () => {
             });
     }, []);
     if (loading) return <LoadingSpinner />
+
+    if(popularTutorials.length === 0) {
+        return (
+        <div className="min-h-screen flex items-center justify-center">
+        <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center flex flex-col justify-center bg-black/30 items-center py-20 border border-purple-600/50 rounded-2xl shadow-lg max-w-4xl p-6"
+        >
+            <AlertCircle className="h-16 w-16 mx-auto text-purple-400 mb-4" />
+            <p className="text-gray-300 font-medium text-center">No popular tutorials available. Check back later!</p>
+            <Link to="/topics">
+                <button className="mt-4 px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-all flex items-center gap-2">
+                    Explore Other Tutorials
+                    <ArrowRight className="w-5 h-5" />
+                </button>
+            </Link>
+        </motion.div>
+        </div>
+        );
+    }
     return (
         <div className="flex flex-col w-full items-center mx-auto py-10 px-4 min-h-screen">
             <h2 className="text-4xl font-bold mt-18 mb-10 text-center bg-gradient-to-r from-indigo-300 to-indigo-300 text-transparent bg-clip-text flex items-center gap-2">
-                <Flame className="w-8 h-8" />
+                
                 Popular Tutorials
             </h2>
             
@@ -37,7 +59,7 @@ const Popular = () => {
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.1, delay: idx * 0.1 }}
-                        className="bg-black/40 border border-indigo-500/50 rounded-2xl shadow-[0_0_10px_rgba(100,149,237,0.4)] p-6 transition-all duration-150 hover:scale-105 hover:shadow-indigo-500/40"
+                        className="bg-black/30 border border-indigo-500/50 rounded-2xl shadow-[0_0_10px_rgba(100,149,237,0.4)] p-6 transition-all duration-150 hover:scale-105 hover:shadow-indigo-500/40"
                     >
                         <div className="flex items-center mb-4">
                             
@@ -94,25 +116,6 @@ const Popular = () => {
                     </motion.div>
                 ))}
             </div>
-
-
-            {popularTutorials.length === 0 && (
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-center py-20 border border-purple-600/50 rounded-2xl shadow-lg max-w-4xl p-6"
-                >
-                    <AlertCircle className="h-16 w-16 mx-auto text-purple-400 mb-4" />
-                    <p className="text-gray-400 font-medium">No popular tutorials available. Check back later!</p>
-                    <Link to="/read">
-                        <button className="mt-4 px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-all flex items-center gap-2">
-                            Explore Other Tutorials
-                            <ArrowRight className="w-5 h-5" />
-                        </button>
-                    </Link>
-                </motion.div>
-            )}
         </div>
     );
 }

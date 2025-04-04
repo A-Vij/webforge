@@ -28,30 +28,20 @@ const ContentSection = ({ section, sectionKey }) => {
 
 const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/tutorials" : "/tutorials"
 
-const Tutorials = ({ slug1 }) => {
-  const { slug } = useParams();
+const Tutorials = ({ tutorial }) => {
+
   const [title, setTitle] = useState("");
   const [sections, setSections] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const slug2 = slug1 || slug;
   useEffect(() => {
-    setLoading(true);
-    axios.post(`${API_URL}/${(slug2)}`)
-      .then(res => {
-        console.log("Fetched Data:", res.data);
-        const tutorial = res.data.tutorial; 
+
         setTitle(tutorial.title);
-        setSections(tutorial.sections || []);
+        setSections(tutorial.sections);
         setLoading(false);
-      })
-      .catch(err => {
-        console.error("Error fetching data:", err);
-        setError("Failed to load tutorial. Please try again later.");
-        setLoading(false);
-      });
-  }, [slug]);
+
+  }, [tutorial]);
 
   if (loading) return <LoadingSpinner />
 
@@ -105,7 +95,7 @@ const Tutorials = ({ slug1 }) => {
             className="px-6 py-2 bg-gradient-to-r from-purple-500 to-purple-700 text-white font-bold rounded-lg shadow-lg hover:from-purple-600 hover:to-purple-800 transition duration-200"
             onClick={() => window.history.back()}
           >
-            Back to Tutorials
+            Go Back
           </motion.button>
         </div>
       </motion.div>

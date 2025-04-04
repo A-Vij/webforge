@@ -9,14 +9,14 @@ const HeroTitle = () => {
                 <motion.span
                     key={index}
                     className="text-white text-3xl md:text-7xl font-bold mb-10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    initial={{ opacity: 0, scale: 1 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{
-                        duration: 0.2,
-                        delay: index * 0.1, 
+                        duration: 0.3,
+                        delay: index * 0.15,
                     }}
                 >
-                    {char === " " ? "\u00A0" : char} 
+                    {char === " " ? "\u00A0" : char}
                 </motion.span>
             ))}
         </div>

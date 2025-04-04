@@ -49,48 +49,17 @@ export default function Home() {
             </div>
 
             {/* Flip Cards Section */}
-            <div id="card-section" className="w-full py-16 bg-black/30">
-                <div className="container mx-auto px-6">
-                    <h2 className="text-3xl font-bold text-white text-center mb-10">
-                        Basics
-                    </h2>
-                    <div className="grid md:grid-cols-3 gap-8 mt-16">
-                        <TechCard 
-                            title="HTML" 
-                            description="Learn the structure of web pages with HTML." 
-                            color="bg-red-500/50"
-                        />
-                        <TechCard 
-                            title="CSS" 
-                            description="Style your web pages beautifully with CSS." 
-                            color="bg-blue-500/50"
-                        />
-                        <TechCard 
-                            title="JavaScript" 
-                            description="Make your web pages interactive with JavaScript." 
-                            color="bg-yellow-500/50"
-                        />
-                    </div>
-                    <h2 className="text-3xl font-bold text-white text-center mt-16 mb-10">
-                        Advanced
-                    </h2>
-                    <div className="grid md:grid-cols-3 gap-8 mt-16">
-                        <TechCard 
-                            title="ReactJS" 
-                            description="Learn the structure of web pages with HTML." 
-                            color="bg-blue-300/50"
-                        />
-                        <TechCard 
-                            title="NodeJS" 
-                            description="Style your web pages beautifully with CSS." 
-                            color="bg-orange-500/50"
-                        />
-                        <TechCard 
-                            title="MongoDB" 
-                            description="Make your web pages interactive with JavaScript." 
-                            color="bg-green-500/50"
-                        />
-                    </div>
+            <div id="card-section" className="w-full bg-black/30 py-12">
+                <h2 className="text-3xl font-bold text-white text-center mb-10">
+                    Technologies
+                </h2>
+                <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <TechCard title="HTML" description="Learn the structure of web pages with HTML." color="bg-red-500/50" />
+                    <TechCard title="CSS" description="Style your web pages beautifully with CSS." color="bg-blue-500/50" />
+                    <TechCard title="JavaScript" description="Make your web pages interactive with JavaScript." color="bg-yellow-500/50" />
+                    <TechCard title="ReactJS" description="Build modern user interfaces with ReactJS." color="bg-blue-300/50" />
+                    <TechCard title="NodeJS" description="Run JavaScript backend services with NodeJS." color="bg-green-500/50" />
+                    <TechCard title="MongoDB" description="Store and manage data efficiently with MongoDB." color="bg-green-400/50" />
                 </div>
             </div>
 

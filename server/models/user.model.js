@@ -37,7 +37,12 @@ const userSchema = new mongoose.Schema({
         type: Number, 
         default: 1
     },
-
+    completedQuests: [
+        {
+            questId: mongoose.SchemaTypes.ObjectId,
+            completedAt: { type: Date, default: Date.now},
+        }
+    ],
     achievements: [
         {
             name: String,

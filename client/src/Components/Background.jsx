@@ -1,69 +1,34 @@
 import { useState, useEffect } from "react";
-import FloatingShape from "./FloatingShape";
+import FloatingParticle from "./FloatingParticle";
 
 const Background = ({ children }) => {
-    const [floatingShapes, setFloatingShapes] = useState([]);
-    const genDelay = () => { return Math.random() * 6 };
+  const [particles, setParticles] = useState([]);
 
-    useEffect(() => {
-        const generateShapes = () => {
-            const d1 = genDelay();
-            const d2 = genDelay();
-            const d3 = genDelay();
-            const d4 = genDelay();
-            const d5 = genDelay();
-            const d6 = genDelay();
-            return [
-                // Top third (0% - 33%)
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "10%", section: "top", delay: d1 },
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "25%", section: "top", delay: d2 },
-                { color: "bg-indigo-500", size: "w-8 h-8", left: "40%", section: "top", delay: d3 },
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "55%", section: "top", delay: d4 },
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "70%", section: "top", delay: d5 },
-                { color: "bg-indigo-500", size: "w-8 h-8", left: "85%", section: "top", delay: d6 },
+  useEffect(() => {
+    const generateParticles = () => {
+      return Array.from({ length: 40 }).map(() => ({
+        left: `${Math.random() * 100}%`,
+        size: `${Math.random() * 5 + 3}px`, // Vary size between 3px to 8px
+        duration: Math.random() * 5 + 4, // 4s - 9s duration
+        delay: Math.random() * 6, // Staggered appearances
+      }));
+    };
 
-                // Middle third (33% - 66%)
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "10%", section: "middle", delay: d1 },
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "25%", section: "middle", delay: d2 },
-                { color: "bg-indigo-500", size: "w-8 h-8", left: "40%", section: "middle", delay: d3 },
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "55%", section: "middle", delay: d4 },
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "70%", section: "middle", delay:d5  },
-                { color: "bg-indigo-500", size: "w-8 h-8", left: "85%", section: "middle", delay: d6 },
+    setParticles(generateParticles());
+  }, []);
 
-                // Bottom third (66% - 100%)
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "10%", section: "bottom", delay: d1 },
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "25%", section: "bottom", delay: d2 },
-                { color: "bg-indigo-500", size: "w-8 h-8", left: "40%", section: "bottom", delay: d3 },
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "55%", section: "bottom", delay: d4 },
-                { color: "bg-indigo-500", size: "w-12 h-12", left: "70%", section: "bottom", delay:d5 },
-                { color: "bg-indigo-500", size: "w-8 h-8", left: "85%", section: "bottom", delay: d6 },
-            ];
-        };
+  return (
+<div className="relative min-h-screen flex flex-col bg-gradient-to-br from-black via-purple-800 to-black bg-fixed overflow-hidden">
+  {/* Floating Dust Particles */}
+  {particles.map((particle, index) => (
+    <FloatingParticle key={index} {...particle} />
+  ))}
 
-        // Generate initial floating shapes
-        setFloatingShapes(generateShapes());
+  {/* Main Content */}
+  <div className="relative z-10 flex-grow">{children}</div>
+</div>
 
-        // Update floating shapes every 6 seconds to keep them dynamic
-        // const interval = setInterval(() => {
-        //     console.log("regend");
-            
-        //     setFloatingShapes(generateShapes());
-        // }, 3000);
-
-        return () => console.log("unmounted");; // Cleanup interval on unmount
-    }, []);
-
-    return (
-        <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-            {/* Floating Diamonds in Sections with Dynamic Delays */}
-            {floatingShapes.map((shape, index) => (
-                <FloatingShape key={index} {...shape} />
-            ))}
-
-            {/* Main Content */}
-            <div className="relative z-10 flex-grow">{children}</div>
-        </div>
-    );
+  );
 };
 
 export default Background;

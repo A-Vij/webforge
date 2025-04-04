@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, replace, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { Menu, X } from "lucide-react";
 import toast from "react-hot-toast";
@@ -26,17 +26,18 @@ export function Navbar() {
                 secondary: "#1a1a2e",
             },
         });
-        setTimeout(() => navigate("/"), 50);
+        setTimeout(() => navigate("/"), 0);
     }
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
     const isActive = (path) => location.pathname === path;
 
+    
     return (
         <>
             
             <nav className="fixed top-5 left-1/2 transform -translate-x-1/2 px-5 py-3 
-                            bg-black/71 border-4 border-purple-500/50 backdrop-blur-lg shadow-lg rounded-2xl 
+                            bg-black/45 border-4 border-purple-500/50 backdrop-blur-lg shadow-lg rounded-2xl 
                             flex items-center space-x-6 z-50">
                 
                 

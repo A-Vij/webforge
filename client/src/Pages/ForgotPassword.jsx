@@ -24,10 +24,10 @@ const ForgotPassword = () => {
         animate={{ scaleY: 1, opacity: 1 }}
         exit={{ scale: 0, opacity: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
-			className='max-w-md w-full bg-black/40 border border-white/10 rounded-2xl shadow-lg overflow-hidden'
+			className='max-w-md w-full bg-black/50 border border-white/10 rounded-2xl shadow-lg overflow-hidden'
 		>
 			<div className='p-8'>
-				<h2 className='text-3xl font-bold mb-6 text-center bg-gradient-to-r from-purple-400 to-purple-600 text-transparent bg-clip-text'>
+				<h2 className='text-3xl font-bold mb-6 text-center bg-gradient-to-r from-purple-500 to-purple-500 text-transparent bg-clip-text'>
 					Forgot Password
 				</h2>
 

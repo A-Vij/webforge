@@ -34,7 +34,7 @@ const SignUp = () => {
             animate={{ scaleY: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="max-w-md w-full bg-black/40 border border-purple-500/50 
+            className="max-w-md w-full bg-black/50 border border-purple-500/50 
                        rounded-2xl shadow-[0_0_10px_rgba(100,149,237,0.4)] overflow-hidden mt-22"
         >
             <div className="p-8">

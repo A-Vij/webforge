@@ -33,7 +33,7 @@ export const SearchField = ({ onSearch }) => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onFocus={() => setIsExpanded(true)}
-          className="w-full bg-black border border-purple-700 rounded-full py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent shadow-md text-white placeholder-gray-500 transition-all duration-300"
+          className="w-full bg-slate-900 border border-purple-700 rounded-full py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent shadow-md text-white placeholder-gray-500 transition-all duration-300"
         />
         
         {isExpanded && (

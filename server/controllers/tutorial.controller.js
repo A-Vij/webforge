@@ -49,6 +49,18 @@ export const fetchTut = async (req, res) => {
         return res.status(400).json({success: false, message: "error in fetch tut"});
     }
 }
+export const updateTut = async (req, res) => {
+    try{
+        const {slug} = req.params;
+        const tutorial = await Tutorial.findOneAndUpdate({slug}, {});
+        if (!tutorial)
+            return res.status(400).json({success: false, message: "Tutorial Not Found"});
+
+    }catch(error){
+        console.log("error in updating tutorial", error.message);
+        return res.status(400).json({success: false, message: "error in update tut"});
+    }
+};
 export const fetchPop = async (req, res) => {
     try {
         const popTuts = await Tutorial.find().sort({views: -1, likes: -1}).limit(10);

@@ -1,24 +1,24 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import LoadingSpinner from "./LoadingSpinner";
 
-const Sidebar = ({ tutorials, onSelect, isOpen, onClose }) => {
-  const [expandedTutorial, setExpandedTutorial] = useState(null);
-  // const navigate = useNavigate();
+const Sidebar = ({ tutorials, isOpen }) => {
+
+  const {slug} = useParams();
+
+  const isActive = (curr) =>  slug === curr;
+  // console.log(slug);
+  const navigate = useNavigate();
   
-  const toggleTutorial = (tutorialId) => {
-    
-    setExpandedTutorial(expandedTutorial === tutorialId ? null : tutorialId);
-  };
 
   return (
     <motion.div
       initial={{ x: -300 }}
       animate={{ x: isOpen ? 0 : -300 }}
       transition={{ duration: 0.3 }}
-      className="max-h-screen fixed inset-y-0 left-0 z-50 bg-slate-900 md:bg-slate-900/90 border border-white/10 p-6 rounded-r-2xl shadow-lg min-h-screen w-64 md:w-84 flex flex-col"
+      className="max-h-screen fixed inset-y-0 left-0 z-50 bg-black md:bg-black/75 border border-white/10 p-6 rounded-r-2xl shadow-lg min-h-screen w-64 md:w-84 flex flex-col"
     >
       
       {/* <div className="flex justify-end mb-4">
@@ -37,20 +37,23 @@ const Sidebar = ({ tutorials, onSelect, isOpen, onClose }) => {
         {tutorials.map((tutorial, index) => (
           <div key={index}>
             <button
-              onClick={() => {toggleTutorial(tutorial.id); }}
-              className="w-full text-left px-3 py-2 rounded-lg bg-black/30 border border-purple-500 text-white"
+              onClick={() => {navigate(`/tutorials/${tutorial.slug}`); }}
+              
+              className={`w-full text-left px-3 py-2 rounded-lg border border-purple-500 text-white transition-colors ${ (!isActive(tutorial.slug)) ? "hover:bg-purple-500" : "bg-purple-500"} `}
             >
               {tutorial.title}
             </button>
 
             
-            {expandedTutorial === tutorial.id && (
+            {/* {expandedTutorial === tutorial.id && (
               <div className="mt-2 space-y-1 pl-4">
                 {tutorial.pages.map((page) => (
                   <button
                     key={page.id}
                     onClick={() => {
-                      onSelect(page.slug);
+                      console.log("hello");
+                      
+                      navigate(`/${page.slug}`);
                       onClose(); 
                     }}
                     className="w-full text-left px-3 py-1 text-sm text-purple-300 hover:underline"
@@ -59,7 +62,7 @@ const Sidebar = ({ tutorials, onSelect, isOpen, onClose }) => {
                   </button>
                 ))}
               </div>
-            )}
+            )} */}
           </div>
         ))}
       </div>

@@ -8,7 +8,7 @@ const HeroTitle = () => {
             {title.split("").map((char, index) => (
                 <motion.span
                     key={index}
-                    className="text-white text-3xl md:text-7xl font-bold mb-10"
+                    className="dark:text-white text-3xl md:text-7xl font-bold mb-10 text-black"
                     initial={{ opacity: 0, scale: 1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{

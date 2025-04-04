@@ -53,7 +53,7 @@ export default function Home() {
                 <h2 className="text-3xl font-bold text-white text-center mb-10">
                     Technologies
                 </h2>
-                <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="max-w-4xl flex justify-items-center mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     <TechCard title="HTML" description="Learn the structure of web pages with HTML." color="bg-red-500/50" />
                     <TechCard title="CSS" description="Style your web pages beautifully with CSS." color="bg-blue-500/50" />
                     <TechCard title="JavaScript" description="Make your web pages interactive with JavaScript." color="bg-yellow-500/50" />

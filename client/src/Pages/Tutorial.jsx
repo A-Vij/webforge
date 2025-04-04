@@ -6,27 +6,32 @@ import { Link } from "react-router-dom";
 
 import Tutorials from "./Tutorials";
 import Sidebar from "../Components/Sidebar";
-import { PanelLeftOpen, PanelLeftClose, AlertCircle, ArrowRight } from "lucide-react"; // Import your chosen icon
+import { PanelLeftOpen, PanelLeftClose, AlertCircle, ArrowRight } from "lucide-react"; 
 import LoadingSpinner from "../Components/LoadingSpinner";
 
 const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/tutorials" : "/tutorials"
 
 const Tutorial = () => {
   const { slug } = useParams();
+  const [path, setPath] = useState("");
   const navigate = useNavigate();
   const [tutorials, setTutorials] = useState({});
-  const [tutorial, setTutorial] = useState({});
+  // const [tutorial, setTutorial] = useState({});
   const [loading, setLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
   const [error, setError] = useState(false);
+
+
+  const handleClick = (path) => {navigate(`/tutorials/${path}`);}
+
   useEffect(() => {
     axios
       .post(`${API_URL}/${slug}`)
       .then((res) => {
-        console.log(res.data.tutorials);
+        // console.log(res.data.tutorials);
         
         setTutorials(res.data.tutorials);
-        setTutorial(res.data.tutorial);
+        // setTutorial(res.data.tutorial);
         setLoading(false);
       })
       .catch((err) => {
@@ -38,7 +43,7 @@ const Tutorial = () => {
 
   if (loading)
     return <LoadingSpinner />
-    
+
   if (error) {
     return (
     <div className="min-h-screen flex items-center justify-center">
@@ -67,10 +72,8 @@ const Tutorial = () => {
         <>
           <Sidebar
             tutorials={tutorials}
-            // onSelect={(slug) => {
-            //   navigate(`/tutorials/${slug}`);
-            // }}
             isOpen={isSidebarOpen}
+            handleClick={handleClick}
             onClose={() => setIsSidebarOpen(false)}
           />
 
@@ -91,7 +94,7 @@ const Tutorial = () => {
 
       
       <div className="w-full p-4">
-        <Tutorials tutorial = {tutorial}/>
+        <Tutorials slug = {slug}/>
       </div>
     </div>
   );

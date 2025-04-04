@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import LoadingSpinner from "./LoadingSpinner";
 
-const Sidebar = ({ tutorials, isOpen }) => {
+const Sidebar = ({ tutorials, isOpen, handleClick }) => {
 
   const {slug} = useParams();
 
@@ -37,7 +37,8 @@ const Sidebar = ({ tutorials, isOpen }) => {
         {tutorials.map((tutorial, index) => (
           <div key={index}>
             <button
-              onClick={() => {navigate(`/tutorials/${tutorial.slug}`); }}
+              // onClick={() => {navigate(`/tutorials/${tutorial.slug}`); }}
+              onClick={() => { handleClick(tutorial.slug); } }
               
               className={`w-full text-left px-3 py-2 rounded-lg border border-purple-500 text-white transition-colors ${ (!isActive(tutorial.slug)) ? "hover:bg-purple-500" : "bg-purple-500"} `}
             >

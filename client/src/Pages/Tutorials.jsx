@@ -28,7 +28,7 @@ const ContentSection = ({ section, sectionKey }) => {
 
 const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/tutorials" : "/tutorials"
 
-const Tutorials = ({ tutorial }) => {
+const Tutorials = ({ slug }) => {
 
   const [title, setTitle] = useState("");
   const [sections, setSections] = useState([]);
@@ -37,13 +37,26 @@ const Tutorials = ({ tutorial }) => {
 
   useEffect(() => {
 
-        setTitle(tutorial.title);
-        setSections(tutorial.sections);
+    axios
+      .post(`${API_URL}/${slug}`)
+      .then((res) => {
+        // console.log(res.data.tutorials);
+        
+        // setTutorials(res.data.tutorials);
+        setTitle(res.data.tutorial.title);
+        setSections(res.data.tutorial.sections);
+
         setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching tutorials:", err);
+        setError(true);
+        setLoading(false);
+      });
 
-  }, [tutorial]);
+  }, [slug]);
 
-  if (loading) return <LoadingSpinner />
+  // if (loading) return <LoadingSpinner />
 
   if (error) {
     return (

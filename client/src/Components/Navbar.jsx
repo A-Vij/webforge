@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import toast from "react-hot-toast";
 
 import { useAuthStore } from "../store/authStore";
+import ThemeToggle from "./ThemeToggle";
 
 export function Navbar() {
     const { user, logout } = useAuthStore();
@@ -37,11 +38,11 @@ export function Navbar() {
         <>
             
             <nav className="fixed top-5 left-1/2 transform -translate-x-1/2 px-5 py-3 
-                            bg-black/45 border-4 border-purple-500/50 backdrop-blur-lg shadow-lg rounded-2xl 
-                            flex items-center space-x-6 z-50">
+                            dark:bg-black/45 dark:border-4 dark:border-purple-500/50 backdrop-blur-lg shadow-lg rounded-2xl 
+                            flex items-center space-x-6 z-50 bg-white">
                 
                 
-                <Link className="text-2xl font-bold text-white" to="/">
+                <Link className="text-2xl font-bold dark:text-white" to="/">
                     WebForge
                 </Link>
 
@@ -51,8 +52,8 @@ export function Navbar() {
                         to="/popular"
                         className={`px-4 py-1 border rounded-full transition-colors ${
                             isActive("/popular")
-                                ? "bg-purple-600 text-white border-transparent" 
-                                : "text-gray-300 border-indigo-500 hover:bg-purple-600 hover:text-white hover:border-transparent"
+                                ? "dark:bg-purple-600 text-white border-transparent bg-indigo-500" 
+                                : "dark:text-gray-300 dark:border-indigo-500 dark:hover:bg-purple-600 hover:text-white dark:hover:border-transparent hover:bg-indigo-500"
                         }`}
                     >
                         Popular
@@ -61,8 +62,8 @@ export function Navbar() {
                         to="/topics"
                         className={`px-4 py-1 border rounded-full transition-colors ${
                             isActive("/topics")
-                                ? "bg-purple-600 text-white border-transparent" 
-                                : "text-gray-300 border-indigo-500 hover:bg-purple-600 hover:text-white hover:border-transparent"
+                                ? "dark:bg-purple-600 text-white border-transparent bg-indigo-500" 
+                                : "dark:text-gray-300 dark:border-indigo-500 dark:hover:bg-purple-600 hover:text-white dark:hover:border-transparent hover:bg-indigo-500"
                         }`}
                     >
                         Topics
@@ -72,8 +73,8 @@ export function Navbar() {
                             to="/profile"
                             className={`px-4 py-1 border rounded-full transition-colors ${
                                 isActive("/profile")
-                                    ? "bg-purple-600 text-white border-transparent" 
-                                    : "text-gray-300 border-indigo-500 hover:bg-purple-600 hover:text-white hover:border-transparent"
+                                ? "dark:bg-purple-600 text-white border-transparent bg-indigo-500" 
+                                : "dark:text-gray-300 dark:border-indigo-500 dark:hover:bg-purple-600 hover:text-white dark:hover:border-transparent hover:bg-indigo-500"
                             }`}
                         >
                             Profile
@@ -87,7 +88,7 @@ export function Navbar() {
                         <>
                             <Link
                                 to="/signup"
-                                className={`px-4 py-1 rounded-full transition-colors ${
+                                className={`px-4 py-1 rounded-full transition-colors cursor-pointer ${
                                     isActive("/signup")
                                         ? "bg-indigo-800 text-white"
                                         : "bg-indigo-500 text-white hover:bg-indigo-700"
@@ -98,7 +99,7 @@ export function Navbar() {
                             <Link
                                 to="/login"
                                 state={{from: location}}
-                                className={`px-4 py-1 rounded-full transition-colors ${
+                                className={`px-4 py-1 rounded-full transition-colors cursor-pointer ${
                                     isActive("/login")
                                         ? "bg-indigo-800 text-white"
                                         : "bg-indigo-500 text-white hover:bg-indigo-700"
@@ -110,14 +111,15 @@ export function Navbar() {
                     ) : (
                         <button
                             onClick={handleLogout}
-                            className="px-4 py-1 rounded-full bg-indigo-500 text-white hover:bg-indigo-700 transition-colors"
+                            className="px-4 py-1 rounded-full bg-indigo-500 text-white hover:bg-indigo-700 transition-colors cursor-pointer"
                         >
                             Logout
                         </button>
                     )}
+                    <ThemeToggle />
                 </div>
                 
-                <button onClick={toggleMenu} className="md:hidden text-white focus:outline-none">
+                <button onClick={toggleMenu} className="md:hidden dark:text-white focus:outline-none">
                     {menuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </nav>
@@ -198,6 +200,9 @@ export function Navbar() {
                                 Logout
                             </button>
                         )}
+                        <div className="pt-2 flex justify-center">
+                            <ThemeToggle />  {/* 👈 Add this */}
+                        </div>
                     </div>
                 </div>
             )}

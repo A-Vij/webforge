@@ -15,6 +15,7 @@ const Sidebar = () => {
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 
+  const [isMounted, setIsMounted] = useState(false);
   const navigate = useNavigate();
 
   const isActive = (curr) =>  slug === curr;
@@ -23,14 +24,17 @@ const Sidebar = () => {
   // console.log(tutorials);
   
   // console.log(slug);
-  
+  useEffect(() => {
+    setIsMounted(true);
+  }, [])
+
   useEffect(() => {
     axios
-      .post(`${API_URL}/${slug}`)
+      .get(`${API_URL}/${topic}`)
       .then((res) => {
         // console.log(res.data.tutorials);
         // console.log(res);
-        setTutorials(res.data.tutorials);
+        setTutorials(res.data.titles);
         // console.log(tutorials);
         // setTutorial(res.data.tutorial);
         setLoading(false);
@@ -40,9 +44,9 @@ const Sidebar = () => {
         setError(true);
         setLoading(false);
       });
-  }, [slug]);
+  }, [topic]);
 
-  if (loading) return <LoadingSpinner />;
+  if (loading) return <></>;
   return (
   <>
     <button
@@ -51,11 +55,12 @@ const Sidebar = () => {
     >
       {!isOpen ? <PanelLeftOpen size={24} /> : <PanelLeftClose size={24} />} 
     </button>
+    
     <motion.div
-      initial={{ x: -300 }}
+      initial={{ x: -350 }}
       animate={{ x: isOpen ? 0 : -350 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-y-0 left-0 z-50 bg-black md:bg-black/75 border border-white/10 p-6 rounded-r-2xl shadow-lg min-h-screen w-64 md:w-84 flex flex-col"
+      className={`fixed inset-y-0 left-0 z-50 bg-black md:bg-black/75 border border-white/10 p-6 rounded-r-2xl shadow-lg min-h-screen w-64 md:w-84 flex flex-col`}
     >
 
       {/* {isOpen && <div
@@ -76,7 +81,7 @@ const Sidebar = () => {
 
       
       {!tutorials ? <LoadingSpinner />  : 
-      <h2 className="text-xl mt-14 font-bold text-indigo-300">{tutorials[0]?.topic}</h2> }
+      <h2 className="text-xl mt-14 font-bold text-indigo-300">{topic.toUpperCase()}</h2> }
       <div className="overflow-y-auto flex-grow pr-2 mt-4 space-y-2">
         {tutorials.map((tutorial, index) => (
           <div key={index}>

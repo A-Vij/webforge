@@ -28,6 +28,19 @@ export const createTut = async (req, res) => {
         res.status(400).json({success: false, message: "error server creating tut"});
     }
 }
+export const fetchTitle = async(req, res) => {
+    try {
+        const { topic } = req.params;
+        const titles = await Tutorial.find({topic: topic.toUpperCase() }, "title slug");
+    
+        if (!titles)
+            return res.status(400).json({success: false, message: "Titles Not Found"});
+        return res.status(200).json({success: true, titles});
+    } catch (error) {
+        console.log("error in fetching titles", error.message);
+        return res.status(400).json({success: false, message: "error in fetch titles"});
+    }
+}
 export const fetchTut = async (req, res) => {
     try {
         const { slug } = req.params;

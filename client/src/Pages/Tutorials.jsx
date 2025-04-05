@@ -56,7 +56,7 @@ const Tutorials = ({ slug }) => {
 
   }, [slug]);
 
-  // if (loading) return <LoadingSpinner />
+  if (loading) return <LoadingSpinner />
 
   if (error) {
     return (

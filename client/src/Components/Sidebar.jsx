@@ -1,18 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
 
 import LoadingSpinner from "./LoadingSpinner";
+import axios from "axios";
 
-const Sidebar = ({ tutorials, isOpen, handleClick }) => {
+const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/tutorials" : "/tutorials"
 
-  const {slug} = useParams();
+const Sidebar = ({ slug, isOpen, handleClick }) => {
 
+  // const {slug} = useParams();
+  const [tutorials, setTutorials] = useState({});
+  const [loading, setLoading] = useState(true);
   const isActive = (curr) =>  slug === curr;
   // console.log(slug);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
+  useEffect(() => {
+    axios
+      .post(`${API_URL}/${slug}`)
+      .then((res) => {
+        // console.log(res.data.tutorials);
+        console.log(res);
+        setTutorials(res.data.tutorials);
+        console.log(tutorials);
+        // setTutorial(res.data.tutorial);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching tutorials:", err);
+        setError(true);
+        setLoading(false);
+      });
+  }, [slug]);
 
+  if (loading) return;
   return (
     <motion.div
       initial={{ x: -300 }}
@@ -31,8 +53,8 @@ const Sidebar = ({ tutorials, isOpen, handleClick }) => {
       </div> */}
 
       
-      {tutorials.length < 0 ? <LoadingSpinner />  : 
-      <h2 className="text-xl mt-14 font-bold text-indigo-300">{tutorials[0].topic}</h2> }
+      {!tutorials ? <LoadingSpinner />  : 
+      <h2 className="text-xl mt-14 font-bold text-indigo-300">{tutorials[0]?.topic}</h2> }
       <div className="overflow-y-auto flex-grow pr-2 mt-4 space-y-2">
         {tutorials.map((tutorial, index) => (
           <div key={index}>

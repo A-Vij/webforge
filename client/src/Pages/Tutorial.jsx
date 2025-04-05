@@ -15,34 +15,34 @@ const Tutorial = () => {
   const { slug } = useParams();
   const [path, setPath] = useState("");
   const navigate = useNavigate();
-  const [tutorials, setTutorials] = useState({});
+  // const [tutorials, setTutorials] = useState({});
   // const [tutorial, setTutorial] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+  // const [loading, setLoading] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); 
   const [error, setError] = useState(false);
 
 
   const handleClick = (path) => {navigate(`/tutorials/${path}`);}
 
-  useEffect(() => {
-    axios
-      .post(`${API_URL}/${slug}`)
-      .then((res) => {
-        // console.log(res.data.tutorials);
+  // useEffect(() => {
+  //   axios
+  //     .post(`${API_URL}/${slug}`)
+  //     .then((res) => {
+  //       // console.log(res.data.tutorials);
         
-        setTutorials(res.data.tutorials);
-        // setTutorial(res.data.tutorial);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching tutorials:", err);
-        setError(true);
-        setLoading(false);
-      });
-  }, [slug]);
+  //       setTutorials(res.data.tutorials);
+  //       // setTutorial(res.data.tutorial);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Error fetching tutorials:", err);
+  //       setError(true);
+  //       setLoading(false);
+  //     });
+  // }, [slug]);
 
-  if (loading)
-    return <LoadingSpinner />
+  // if (loading)
+  //   return <LoadingSpinner />
 
   if (error) {
     return (
@@ -71,7 +71,7 @@ const Tutorial = () => {
       {isSidebarOpen && (
         <>
           <Sidebar
-            tutorials={tutorials}
+            slug = {slug}
             isOpen={isSidebarOpen}
             handleClick={handleClick}
             onClose={() => setIsSidebarOpen(false)}
@@ -85,7 +85,7 @@ const Tutorial = () => {
       )}
 
       
-      {tutorials.length > 0 && <button
+      {<button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         className="fixed top-6 left-4 z-50 bg-purple-600 text-white p-2 rounded-lg shadow-lg flex items-center"
       >

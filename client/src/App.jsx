@@ -12,7 +12,6 @@ import Home from "./Pages/Home";
 import { Navbar } from "./Components/Navbar";
 import { Footer } from "./Components/Footer";
 import ScrollToTop from "./Components/ScrollToTop";
-import Tutorials from "./Pages/Tutorials";
 import Popular from "./Pages/Popular";
 import LoadingSpinner from "./Components/LoadingSpinner";
 
@@ -20,6 +19,7 @@ import { useAuthStore } from "./store/authStore";
 import Profile from "./Pages/Profile";
 import Tutorial from "./Pages/Tutorial";
 import Topics from "./Pages/Topics";
+import Sidebar from "./Components/Sidebar";
 
 const ProtectedRoute = ({ children }) => {
   const { isCheckingAuth, isAuthenticated, user, justLoggedOut } = useAuthStore();
@@ -120,7 +120,7 @@ function App() {
         />
 
         <Route path="/popular" element={<Popular />} />
-        <Route path="/tutorials" element={<Tutorial />} />
+        {/* <Route path="/tutorials" element={<Tutorial />} /> */}
         <Route path="/topics" element={<Topics />} />
 
 
@@ -133,9 +133,10 @@ function App() {
         />
 
         <Route
-          path="/tutorials/:slug"
+          path="/tutorials/:topic/:slug"
           element={
             <ProtectedRoute>
+              <Sidebar />
               <Tutorial />
             </ProtectedRoute>
           }

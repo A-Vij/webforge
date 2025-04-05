@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
 import { Code } from "../Components/Code";
-import LoadingSpinner from "../Components/LoadingSpinner";
+
 
 import { AlertCircle, ArrowRight } from "lucide-react";
 
@@ -28,7 +27,7 @@ const ContentSection = ({ section, sectionKey }) => {
 
 const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/tutorials" : "/tutorials"
 
-const Tutorials = ({ slug }) => {
+const Tutorials = ({ slug, tutorial }) => {
 
   const [title, setTitle] = useState("");
   const [sections, setSections] = useState([]);
@@ -36,27 +35,15 @@ const Tutorials = ({ slug }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-
-    axios
-      .post(`${API_URL}/${slug}`)
-      .then((res) => {
         // console.log(res.data.tutorials);
         
         // setTutorials(res.data.tutorials);
-        setTitle(res.data.tutorial.title);
-        setSections(res.data.tutorial.sections);
-
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching tutorials:", err);
-        setError(true);
-        setLoading(false);
-      });
-
+        setTitle(tutorial?.title);
+        setSections(tutorial?.sections);
+        // setLoading(false);
   }, [slug]);
 
-  if (loading) return <LoadingSpinner />
+  // if (loading) return <LoadingSpinner />
 
   if (error) {
     return (
@@ -101,7 +88,7 @@ const Tutorials = ({ slug }) => {
           ))}
         </div>
 
-        <div className="mt-8 flex justify-center">
+        {tutorial && <div className="mt-8 flex justify-center">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -110,7 +97,7 @@ const Tutorials = ({ slug }) => {
           >
             Go Back
           </motion.button>
-        </div>
+        </div>}
       </motion.div>
     </div>
   );

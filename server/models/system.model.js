@@ -4,17 +4,15 @@ const systemSchema = new mongoose.Schema({
     name: { 
         type: String, 
         required: true, 
-        unique: true 
+        unique: true
     },
     desc: { 
         type: String, 
         required: true, 
-        
     },
     exp: { 
         type: Number, 
         required: true, 
-        
     },
     achievement: {
         type: String,

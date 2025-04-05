@@ -1,5 +1,5 @@
-import System from "../models/system.model";
-import User from "../models/user.model";
+import System from "../models/system.model.js";
+import User from "../models/user.model.js";
 
 export const createQuest = async (req, res) => {
     const { name, desc, exp } = req.body;

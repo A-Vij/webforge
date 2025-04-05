@@ -1,5 +1,6 @@
 import express from "express";
-import { completeQuest } from "../controllers/system.controller";
+import { completeQuest } from "../controllers/system.controller.js";
+
 const router = express.Router();
 
 // router.post("/get-quest", getQuest);

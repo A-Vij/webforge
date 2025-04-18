@@ -7,6 +7,7 @@ import path from "path"
 import authRoutes from "./routes/auth.route.js"
 import tutRoutes from "./routes/tutorial.route.js"
 import sysRoutes from "./routes/system.route.js"
+import userRoutes from "./routes/user.route.js"
 
 import connectDB from "./db/connectDB.js";
 
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/tutorials", tutRoutes);
 app.use("/quest", sysRoutes);
+app.use("/user", userRoutes);
 
 if (process.env.NODE_ENV === "production"){
     app.use(express.static(path.join(__dirname, "/client/dist")));

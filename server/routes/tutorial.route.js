@@ -3,10 +3,11 @@ import { createTut, fetchTut, fetchPop, fetchTitle } from "../controllers/tutori
 
 const router = express.Router();
 
-router.post("/create-tutorial", createTut);
+router.get("/popular", fetchPop);
+router.get("/:topic", fetchTitle);
+
+router.post("/create", createTut);
 router.post("/:slug", fetchTut);
 
-router.get("/:topic", fetchTitle);
-router.get("/popular", fetchPop);
 
 export default router;

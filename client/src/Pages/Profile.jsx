@@ -1,19 +1,25 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+
+const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/user" : "/user"
 
 const Profile = () => {
-    const user = {
-        name: "Username",
-        level: 12,
-        exp: 75, 
-        profileImage: "https://via.placeholder.com/100", 
-    };
+
 
     const badges = [
         { name: "Explorer", icon: "" },
         { name: "Elite Coder", icon: "" },
         { name: "Debugger", icon: "" }
     ];
+    const [user, setUser] = useState({});
+    useEffect(()=>{
+        axios.get(`${API_URL}/get-profile`)
+        .then((res) => {
+            // console.log(res.data.user);
+            setUser(res.data.user);
+        })
+    }, []);
 
     return (
         <div className="flex items-center justify-center min-h-screen mt-28">
@@ -30,11 +36,11 @@ const Profile = () => {
                         
                         <div className="md:w-1/3 w-full p-6 rounded-xl border-4 border-black/70 shadow-lg backdrop-blur-lg bg-indigo-600/20 flex flex-col items-center">
                             <img 
-                                src={user.profileImage} 
+                                src={user?.profileImage} 
                                 alt="User Avatar" 
                                 className="w-24 h-24 rounded-full border-4 border-purple-500 shadow-lg" 
                             />
-                            <h1 className="text-2xl font-bold text-purple-300 mt-3">{user.name}</h1>
+                            <h1 className="text-2xl font-bold text-purple-300 mt-3">{user?.name}</h1>
                         </div>
 
                         
@@ -55,11 +61,11 @@ const Profile = () => {
 
 
                     <div className="w-full max-w-4xl mt-6 p-4 rounded-xl border-4 border-black/70 shadow-lg backdrop-blur-lg bg-transparent">
-                        <h2 className="text-lg font-bold mb-2 text-purple-300">Level {user.level}</h2>
+                        <h2 className="text-lg font-bold mb-2 text-purple-300">Level {user?.level}</h2>
                         <div className="w-full h-6 bg-black/40 rounded-full overflow-hidden border-2 border-purple-500">
                             <div 
                                 className="h-full bg-purple-500 rounded-full transition-all duration-500"
-                                style={{ width: `${user.exp}%` }}
+                                style={{ width: `${user?.experiencePoints}%` }}
                             ></div>
                         </div>
                     </div>

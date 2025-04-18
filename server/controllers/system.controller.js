@@ -2,12 +2,12 @@ import System from "../models/system.model.js";
 import User from "../models/user.model.js";
 
 export const createQuest = async (req, res) => {
-    const { name, desc, exp } = req.body;
+    const { name, desc, exp, topic } = req.body;
     try {
-        if (!name || !desc || !exp)
+        if (!name || !desc || !exp || !topic)
             return res.status(400).json({success: false, message: "all fields reqd"});
         const quest = new System({
-            name, desc, exp
+            name, desc, exp, topic
         });
         await quest.save();
 
@@ -26,22 +26,22 @@ export const completeQuest = async (req, res) => {
     const { userId, questId } = req.body;
     try {
         const user = await User.findById(userId);
-        if (!user) return {success: false, message: "user not found"};
+        if (!user) return res.status(400).json({success: false, message: "user not found"});
 
         const quest = await System.findById(questId);
-        if (!quest) return {success: false, message: "quest not found"};
+        if (!quest) return res.status(400).json({success: false, message: "quest not found"});
 
-        if (user.completedQuests.some(q => q.questId.equals(questId)))
-            return {success: false, message: "quest already completed"};
+        if (user.completedQuests.some(q => q.questId.toString() === questId ))
+            return res.status(400).json({success: false, message: "Quest Already Completed" });
 
-        user.completedQuests.push({questId});
+        user.completedQuests.push({ questId, completedAt: Date.now });
         user.experiencePoints += quest.exp;
 
         await user.save();
-        return res.status(200).json({message: "quest completed successfully", user});
+        return res.status(200).json({success: true, message: "quest completed successfully", user});
 
     } catch (error) {
         console.log(error);
-        return res.status(400).json({message: "error completing quest"});
+        return res.status(400).json({success:false, message: "error completing quest"});
     }
 }

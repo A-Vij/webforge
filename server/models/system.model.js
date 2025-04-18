@@ -14,8 +14,9 @@ const systemSchema = new mongoose.Schema({
         type: Number, 
         required: true, 
     },
-    achievement: {
+    topic: {
         type: String,
+        required: true,
     }
 });
 const System = mongoose.model('System', systemSchema);

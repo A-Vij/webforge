@@ -48,7 +48,7 @@ const SignUp = () => {
                     <Input 
                         icon={User}
                         type="text"
-                        placeholder="Enter Full Name"
+                        placeholder="Username"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         autoComplete="username"

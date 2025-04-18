@@ -13,7 +13,6 @@ const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/
 
 const Tutorial = () => {
   const { slug } = useParams();
-  const { tutSlug } = useState("");
   const [path, setPath] = useState("");
   const navigate = useNavigate();
   const [tutorials, setTutorials] = useState({});
@@ -34,7 +33,6 @@ const Tutorial = () => {
       .post(`${API_URL}/${slug}`)
       .then((res) => {
         // console.log(res.data.tutorials);
-        
         setTutorials(res.data.tutorials);
         setTutorial(res.data.tutorial);
         setLoading(false);
@@ -83,10 +81,7 @@ const Tutorial = () => {
             onClose={() => setIsSidebarOpen(false)}
           />
 
-          <div
-            className="fixed  inset-0  z-40"
-            onClick={() => setIsSidebarOpen(false)}
-          ></div>
+
         </>
       )} */}
 

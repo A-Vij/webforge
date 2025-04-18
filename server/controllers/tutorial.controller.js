@@ -1,3 +1,4 @@
+import System from "../models/system.model.js";
 import Tutorial from "../models/tutorial.model.js";
 
 export const createTut = async (req, res) => {
@@ -75,13 +76,17 @@ export const updateTut = async (req, res) => {
     }
 };
 export const fetchPop = async (req, res) => {
+    
     try {
         const popTuts = await Tutorial.find().sort({views: -1, likes: -1}).limit(10);
-
         if(!popTuts)
             return res.status(400).json({success: false, message: "Failed to load popular tutorials"});
+        
+        const topics = [...new Set(popTuts.map(tut => tut.topic))];
 
-        return res.status(200).json({success: true, popTuts});
+        const popQuests = await System.find({topic: {$in: topics} });
+        
+        return res.status(200).json({success: true, popTuts, popQuests});
     } catch (error) {
         console.error("Error fetching popular tutorials:", error);
         res.status(400).json({ success:false, message: "Server error" });

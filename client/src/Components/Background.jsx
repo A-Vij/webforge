@@ -18,7 +18,7 @@ const Background = ({ children }) => {
   }, []);
 
   return (
-<div className="relative min-h-screen flex flex-col bg-gradient-to-b from-indigo-300 via-gray-300 to-indigo-300 dark:from-black dark:via-purple-800 dark:to-black bg-fixed overflow-hidden">
+<div className="relative min-h-screen flex flex-col bg-gradient-to-b from-indigo-400  via-gray-300  to-indigo-200  dark:from-black dark:via-purple-800 dark:to-black bg-fixed overflow-hidden">
   {/* Floating Dust Particles */}
   {particles.map((particle, index) => (
     <FloatingParticle key={index} {...particle} />

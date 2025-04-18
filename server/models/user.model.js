@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
     },
     completedQuests: [
         {
-            questId: mongoose.SchemaTypes.ObjectId,
+            questId: { type: mongoose.SchemaTypes.ObjectId, ref: "System" },
             completedAt: { type: Date, default: Date.now},
         }
     ],
@@ -52,7 +52,7 @@ const userSchema = new mongoose.Schema({
 
     progress: [
         {
-            tutorialId: mongoose.SchemaTypes.ObjectId,
+            tutorialId: { type: mongoose.SchemaTypes.ObjectId, ref: "Tutorial" },
             completed: {type: Boolean, default: false},
             lastAccessed: {type: Date, default: Date.now},
         }

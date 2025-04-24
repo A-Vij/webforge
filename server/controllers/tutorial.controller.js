@@ -76,7 +76,7 @@ export const updateTut = async (req, res) => {
     }
 };
 export const fetchPop = async (req, res) => {
-    
+    console.log("fetching");
     try {
         const popTuts = await Tutorial.find().sort({views: -1, likes: -1}).limit(10);
         if(!popTuts)
@@ -92,3 +92,24 @@ export const fetchPop = async (req, res) => {
         res.status(400).json({ success:false, message: "Server error" });
     }
 }
+export const searchTut =  async (req, res) => {
+    try {
+        // console.log("searching");
+        
+        const q = req.query.q;
+        // console.log("Q", q);
+        if (!q) return res.json([]);
+      
+        const matches = await Tutorial.find(
+          { title: { $regex: q, $options: 'i' } },
+          'title slug topic'
+        ).limit(5);
+        // console.log(matches);
+        res.status(200).json(matches);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ success:false, message: "Server error" });
+    }
+
+};
+  

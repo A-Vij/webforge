@@ -39,7 +39,7 @@ const Popular = () => {
                     <AlertCircle className="h-16 w-16 mx-auto text-purple-400 mb-4" />
                     <p className="text-gray-300 font-medium text-center">No popular tutorials available. Check back later!</p>
                     <Link to="/topics">
-                        <button className="mt-4 px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-all flex items-center gap-2">
+                        <button className="mt-4 px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-all flex items-center gap-2 cursor-pointer">
                             Explore Other Tutorials
                             <ArrowRight className="w-5 h-5" />
                         </button>
@@ -106,7 +106,7 @@ const Popular = () => {
                                     </span>
                                 </div>
                                 <Link to={`/tutorials/${tutorial.topic.toLowerCase()}/${tutorial.slug}`}>
-                                    <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors flex items-center shadow-md">
+                                    <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors flex items-center shadow-md cursor-pointer">
                                         Explore
                                         <ArrowRight className="w-4 h-4 ml-1" />
                                     </button>

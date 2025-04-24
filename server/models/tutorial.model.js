@@ -7,12 +7,10 @@ const sectionSchema = new mongoose.Schema({
         required: true,
     },
     content: {
-        type: String, // HTML-formatted content
-        // required: true,
+        type: String, 
     },
     file: {
-        type: String, // Raw HTML code snippet
-        // required: true,
+        type: String, 
     }
 });
 
@@ -37,15 +35,23 @@ const tutorialSchema = new mongoose.Schema({
         type: String,
         unique: true,
         required: true,
+    }, 
+    sections: [sectionSchema],
+    challenge: {
+        desc: {type: String},
+        file: {type: String}
     },
-    sections: [sectionSchema], // Array of sections
+    solution: {
+        desc: {type: String},
+        file: {type: String}
+    },
     views: {
         type: Number,
-        default: 0, // Default to 0 views
+        default: 0, 
     },
     likes: {
         type: Number,
-        default: 0, // Default to 0 likes
+        default: 0, 
     },
     createdAt: {
         type: Date,
@@ -57,7 +63,6 @@ const tutorialSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-// Automatically generate a slug from the title
 tutorialSchema.pre("validate", function(next) {
     if (this.title) {
         this.slug = slugify(this.title, { lower: true, strict: true });

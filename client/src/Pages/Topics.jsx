@@ -27,12 +27,13 @@ const TutorialsPage = () => {
 
   return (
     <motion.div 
-      initial={{ scaleY: 0, opacity: 0 }}
-      animate={{ scaleY: 1, opacity: 1 }}
-      exit={{ scaleY: 0, opacity: 0 }}
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -50, opacity: 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       className="min-h-screen flex items-center justify-center"
     >
+
       <div className="mt-24 min-h-[80vh] w-full max-w-7xl bg-black/40 border border-purple-500/50 rounded-2xl shadow-[0_0_10px_rgba(100,149,237,0.4)] p-8 flex flex-col">
         <h2 className="text-3xl font-bold text-center text-black mb-6 dark:bg-gradient-to-r dark:from-indigo-200 dark:to-indigo-300 dark:text-transparent bg-clip-text">
           Choose a Topic to Learn

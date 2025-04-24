@@ -51,7 +51,7 @@ const Sidebar = () => {
   <>
     <button
       onClick={() => setIsOpen(!isOpen)}
-      className="fixed top-6 left-6 z-60 bg-purple-600 text-white p-2 rounded-lg shadow-lg flex items-center"
+      className="fixed top-6 left-6 z-60 bg-purple-600 text-white p-2 rounded-lg shadow-lg cursor-pointer flex items-center"
     >
       {!isOpen ? <PanelLeftOpen size={24} /> : <PanelLeftClose size={24} />} 
     </button>
@@ -89,7 +89,7 @@ const Sidebar = () => {
               // onClick={() => {navigate(`/tutorials/${tutorial.slug}`); }}
               onClick={() => { handleClick(tutorial.slug); } }
               
-              className={`w-full text-left px-3 py-2 rounded-lg border border-purple-500 text-white transition-colors ${ (!isActive(tutorial.slug)) ? "hover:bg-purple-500" : "bg-purple-500"} `}
+              className={`w-full text-left px-3 py-2 rounded-lg border border-purple-500 cursor-pointer text-white transition-colors ${ (!isActive(tutorial.slug)) ? "hover:bg-purple-500" : "bg-purple-500"} `}
             >
               {tutorial.title}
             </button>

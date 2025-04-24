@@ -2,12 +2,12 @@ import System from "../models/system.model.js";
 import User from "../models/user.model.js";
 
 export const createQuest = async (req, res) => {
-    const { name, desc, exp, topic } = req.body;
+    const { name, desc, exp, topic, requirement } = req.body;
     try {
-        if (!name || !desc || !exp || !topic)
+        if (!name || !desc || !exp || !topic || !requirement)
             return res.status(400).json({success: false, message: "all fields reqd"});
         const quest = new System({
-            name, desc, exp, topic
+            name, desc, exp, topic, requirement
         });
         await quest.save();
 

@@ -32,7 +32,7 @@ const Tutorial = () => {
     axios
       .post(`${API_URL}/${slug}`)
       .then((res) => {
-        // console.log(res.data.tutorials);
+        // console.log(res.data.tutorial);
         setTutorials(res.data.tutorials);
         setTutorial(res.data.tutorial);
         setLoading(false);
@@ -69,34 +69,13 @@ const Tutorial = () => {
     );
   }
   return (
+    
+    
     <div className="relative min-h-screen">
-      
-      {/* {isSidebarOpen && (
-        <>
-          <Sidebar
-            slug = {slug}
-            tutorials={tutorials}
-            isOpen={isSidebarOpen}
-            handleClick={handleClick}
-            onClose={() => setIsSidebarOpen(false)}
-          />
-
-
-        </>
-      )} */}
-
-      
-      {/* <button
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="fixed top-6 left-4 z-50 bg-purple-600 text-white p-2 rounded-lg shadow-lg flex items-center"
-      >
-        {!isSidebarOpen ? <PanelLeftOpen size={24} /> : <PanelLeftClose size={24} />} 
-      </button> */}
-
-      
       <div className="w-full p-4">
         <Tutorials slug = {slug} tutorial={tutorial}/>
       </div>
+      
     </div>
   );
 };

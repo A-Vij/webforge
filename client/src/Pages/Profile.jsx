@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 import axios from "axios";
 
 const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/user" : "/user"
@@ -7,31 +8,40 @@ const API_URL = import.meta.env.MODE === "development" ? "http://localhost:8000/
 const Profile = () => {
 
 
-    const badges = [
-        { name: "Explorer", icon: "" },
-        { name: "Elite Coder", icon: "" },
-        { name: "Debugger", icon: "" }
-    ];
+    // const badges = [
+    //     { name: "Explorer", icon: "" },
+    //     { name: "Elite Coder", icon: "" },
+    //     { name: "Debugger", icon: "" }
+    // ];
     const [user, setUser] = useState({});
+    const [badges, setBadges] = useState([]);
+    const [completedQuests, setCompletedQuests] = useState([]);
+    const [completedTutorials, setCompletedTutorials] = useState([]);
+
     useEffect(()=>{
         axios.get(`${API_URL}/get-profile`)
         .then((res) => {
             // console.log(res.data.user);
             setUser(res.data.user);
+            // console.log(user);
+            setBadges(res.data.user.badges);
+            setCompletedTutorials(res.data.user.progress);
+            setCompletedQuests(res.data.user.completedQuests);
+            
+            
         })
     }, []);
 
     return (
         <div className="flex items-center justify-center min-h-screen mt-28">
             <motion.div
-                initial={{ scaleY: 0, opacity: 0 }}
-                animate={{ scaleY: 1, opacity: 1 }}
-                exit={{ scaleY: 0, opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
                 className="w-full max-w-5xl bg-black/30 border border-purple-500/50 rounded-2xl shadow-[0_0_10px_rgba(100,149,237,0.4)] p-8"
             >
                 <div className="flex flex-col items-center w-full p-6 text-white">
-                    
                     <div className="w-full max-w-4xl flex flex-col md:flex-row gap-6">
                         
                         <div className="md:w-1/3 w-full p-6 rounded-xl border-4 border-black/70 shadow-lg backdrop-blur-lg bg-indigo-600/20 flex flex-col items-center">
@@ -44,18 +54,21 @@ const Profile = () => {
                         </div>
 
                         
-                        <div className="md:w-2/3 w-full p-6 rounded-xl border-4 border-black/70 shadow-lg backdrop-blur-lg bg-indigo-600/20 flex flex-wrap justify-center items-center gap-4">
-                            {badges.map((badge, index) => (
-                                <div key={index} className="w-16 h-16 flex items-center justify-center bg-black/50 border-2 border-purple-500 rounded-full shadow-lg text-2xl">
-                                    {badge.icon}
+                        <div className="md:w-2/3 w-full p-6 rounded-xl border-4 border-black/70 shadow-lg backdrop-blur-lg bg-indigo-600/20 flex items-center justify-center">
+                            { (
+                                <div className="flex flex-wrap justify-center items-center gap-4 w-full">
+                                    {badges.map((badge, index) => (
+                                        <div key={index} className="w-16 h-16 flex items-center justify-center bg-black/50 border-2 border-purple-500 rounded-full shadow-lg text-2xl">
+                                            {badge.icon}
+                                        </div>
+                                    ))}
+                                    {[...Array(6 - badges.length)].map((_, index) => (
+                                        <div key={index} className="w-16 h-16 flex items-center justify-center bg-black/50 border-2 border-purple-500 rounded-full shadow-lg opacity-40">
+                                            -
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                            
-                            {[...Array(6 - badges.length)].map((_, index) => (
-                                <div key={index} className="w-16 h-16 flex items-center justify-center bg-black/50 border-2 border-purple-500 rounded-full shadow-lg opacity-40">
-                                    ❔
-                                </div>
-                            ))}
+                            )}
                         </div>
                     </div>
 
@@ -65,7 +78,7 @@ const Profile = () => {
                         <div className="w-full h-6 bg-black/40 rounded-full overflow-hidden border-2 border-purple-500">
                             <div 
                                 className="h-full bg-purple-500 rounded-full transition-all duration-500"
-                                style={{ width: `${user?.experiencePoints}%` }}
+                                style={{ width: `${(user?.experiencePoints)/2}%` }}
                             ></div>
                         </div>
                     </div>
@@ -73,42 +86,60 @@ const Profile = () => {
                     
                     <div className="flex flex-col md:flex-row gap-6 w-full max-w-4xl mt-6">
                         
-                        <div className="md:w-1/2 w-full p-4 rounded-xl border-4 border-black/70 shadow-lg bg-indigo-600/20 backdrop-blur-lg">
-                            <h2 className="text-lg font-bold text-purple-300 mb-4">Achievements</h2>
-                            <div className="grid grid-cols-1 gap-3">
-                                {[ 
-                                    { name: "Code Warrior", description: "Completed 10 challenges", icon: "" },
-                                    { name: "Fast Learner", description: "Finished a course in record time", icon: "" },
-                                    { name: "Bug Hunter", description: "Fixed 5 critical bugs", icon: "" }
-                                ].map((achievement, index) => (
-                                    <div key={index} className="flex items-center p-3 rounded-lg bg-black/30 border-2 border-purple-500">
-                                        <span className="text-xl mr-3">{achievement.icon}</span>
-                                        <div>
-                                            <h3 className="font-semibold text-purple-200">{achievement.name}</h3>
-                                            <p className="text-sm text-purple-400">{achievement.description}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                    <div className="md:w-1/2 w-full p-4 rounded-xl border-4 border-black/70 shadow-lg bg-indigo-600/20 backdrop-blur-lg flex flex-col overflow-y-auto max-h-[300px] custom-scrollbar">
 
-                        
-                        <div className="md:w-1/2 w-full p-4 rounded-xl border-4 border-black/70 shadow-lg bg-indigo-600/20 backdrop-blur-lg">
-                            <h2 className="text-lg font-bold text-purple-300 mb-4">Current Quests</h2>
-                            <ul className="space-y-3">
-                                {[ 
-                                    { name: "Master Flexbox", completed: false },
-                                    { name: "JavaScript Algorithms", completed: true },
-                                    { name: "React Hooks Basics", completed: false }
-                                ].map((quest, index) => (
-                                    <li key={index} className="flex items-center p-3 rounded-lg bg-black/30 border-2 border-purple-500">
-                                        <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${quest.completed ? 'bg-purple-500' : 'border-2 border-purple-500'}`}>
-                                            {quest.completed && <span className="text-white text-xs">✓</span>}
+                        {completedTutorials.length > 0 ? (
+                            <>
+                                <h2 className="text-lg font-bold text-purple-300 mb-4 text-center">Progress</h2>
+                                <div className="grid grid-cols-1 gap-3">
+                                    {completedTutorials.map((tutorial, index) => (
+                                        <div key={index} className="flex items-center p-3 rounded-lg bg-black/30 border-2 border-purple-500">
+                                            {/* <span className="text-xl mr-3">{tutorial.icon}</span> */}
+                                            <div>
+                                                <h3 className="font-semibold text-purple-200 text-center flex items-center">
+                                                    <Check size={18} className="text-green-400 mr-2" />
+                                                    {tutorial.tutorialId.title}
+                                                </h3>
+                                            </div>
                                         </div>
-                                        <span className="text-purple-400">{quest.name}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                                    ))}
+                                </div>
+                            </>
+                            ) : (
+                                <div className="flex flex-1 items-center justify-center text-purple-300 text-center h-full">
+                                    No Tutorials Completed
+                                </div>
+                            )}
+                        </div>
+                            
+                        <div className="md:w-1/2 w-full p-4 rounded-xl border-4 border-black/70 shadow-lg bg-indigo-600/20 backdrop-blur-lg flex flex-col overflow-y-auto max-h-[300px] custom-scrollbar">
+                            {completedQuests.length > 0 ? (
+                                <>
+                                    <h2 className="text-lg font-bold text-purple-300 mb-4 text-center">Current Quests</h2>
+                                    <ul className="space-y-3">
+                                        {completedQuests.map((quest, index) => (
+                                            <li key={index} className="flex items-center justify-between p-3 rounded-lg bg-black/30 border-2 border-purple-500">
+                                                <div className="flex items-center">
+                                                    <div className={`w-5 h-5 rounded-full flex items-center justify-center mr-3 ${quest.completed ? 'bg-purple-500' : 'border-2 border-purple-500'}`}>
+                                                    {quest.completed && <span className="text-white text-xs">✓</span>}
+                                                    </div>
+                                                    <span className="font-semibold text-purple-200">{quest.questId?.name}</span>
+                                                </div>
+
+                                                <div className="flex items-center text-sm text-purple-300 font-medium">
+                                                    <span>{quest.current}</span>
+                                                    <span className="mx-1 text-purple-400">/</span>
+                                                    <span>{quest.questId?.requirement}</span>
+                                                </div>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </>
+                            ) : (
+                                <div className="flex flex-1 items-center justify-center text-purple-300 text-center h-full">
+                                    No Quests Started Yet
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

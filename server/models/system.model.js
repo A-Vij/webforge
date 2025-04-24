@@ -17,7 +17,8 @@ const systemSchema = new mongoose.Schema({
     topic: {
         type: String,
         required: true,
-    }
+    },
+    requirement : { type: Number }
 });
 const System = mongoose.model('System', systemSchema);
 

@@ -14,7 +14,7 @@ export function Code({ files, entryFile }) {
       }
 
       if (files && files["/index.html"]) {
-        const linesOfCode = files["/index.html"].code.split("\n").length;
+        const linesOfCode = files["/index.html"].code?.split("\n").length;
         const calculatedHeight = Math.max(400, linesOfCode * 20 + 40);
         setEditorHeight(calculatedHeight);
       }

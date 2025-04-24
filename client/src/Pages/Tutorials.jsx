@@ -6,6 +6,10 @@ import { Code } from "../Components/Code";
 
 import { AlertCircle, ArrowRight } from "lucide-react";
 
+import TutorialChallenge from "../Components/TutorialChallenge";
+import TutorialSolution from "../Components/TutorialSolution";
+import MarkCompleteButton from "../Components/MarkCompleteButton";
+
 const ContentSection = ({ section, sectionKey }) => {
   return (
     <div className="p-6 border border-white/10 rounded-2xl bg-indigo-300/20">
@@ -31,6 +35,8 @@ const Tutorials = ({ slug, tutorial }) => {
 
   const [title, setTitle] = useState("");
   const [sections, setSections] = useState([]);
+  const [challenge, setChallenge] = useState(null);
+  const [solution, setSolution] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -38,8 +44,13 @@ const Tutorials = ({ slug, tutorial }) => {
         // console.log(res.data.tutorials);
         
         // setTutorials(res.data.tutorials);
+        console.log(tutorial);
+        
         setTitle(tutorial?.title);
         setSections(tutorial?.sections);
+        setChallenge(tutorial?.challenge);
+        setSolution(tutorial?.solution);
+
         // setLoading(false);
   }, [slug]);
 
@@ -87,6 +98,9 @@ const Tutorials = ({ slug, tutorial }) => {
             <ContentSection key={index} section={section} sectionKey={`section-${index}`} />
           ))}
         </div>
+        <TutorialChallenge tutorial = {tutorial} desc = {challenge?.desc} starterFiles={challenge?.file} entryFile="index.html" />
+        <TutorialSolution desc = {solution?.dec} solutionFiles={solution?.file} entryFile="index.html" />
+        {/* <MarkCompleteButton tutorialId={tutorial?._id}/> */}
 
         {tutorial && <div className="mt-8 flex justify-center">
           <motion.button

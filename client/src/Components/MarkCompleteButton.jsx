@@ -25,23 +25,12 @@ const MarkCompleteButton = ({ tutorial }) => {
         tutorial,
       });
       setCompleted(true);
-      toast.success(`${res.data.message}`, {
-        style: {
-            background: "#1a1a2e",  // Dark background
-            color: "#e0e0ff",     // Light text
-            border: "1px solid #7a00ff",  // Purple border
-            boxShadow: "0 0 10px #7a00ff",
-        },
-        iconTheme: {
-            primary: "#7a00ff",
-            secondary: "#1a1a2e",
-        },
-      });
+
       toast.success(`Gained 50XP`, {
         style: {
-            background: "#1a1a2e",  // Dark background
-            color: "#e0e0ff",     // Light text
-            border: "1px solid #7a00ff",  // Purple border
+            background: "#1a1a2e",  
+            color: "#e0e0ff",     
+            border: "1px solid #7a00ff",  
             boxShadow: "0 0 10px #7a00ff",
         },
         iconTheme: {
@@ -49,6 +38,22 @@ const MarkCompleteButton = ({ tutorial }) => {
             secondary: "#1a1a2e",
         },
       });
+
+      if (res.data.leveledUp){
+        toast.success(`Levelled Up!!`, {
+          style: {
+              background: "#1a1a2e",  
+              color: "#e0e0ff",     
+              border: "1px solid #7a00ff",  
+              boxShadow: "0 0 10px #7a00ff",
+          },
+          iconTheme: {
+              primary: "#7a00ff",
+              secondary: "#1a1a2e",
+          },
+        });
+      }
+
     } catch (err) {
       setCompleted(false);  
       toast.error(err.message || "Completion Failed!", {

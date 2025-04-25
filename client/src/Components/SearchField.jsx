@@ -81,19 +81,18 @@ export const SearchField = ({ onSearch }) => {
       </form>
 
       {showDropdown && matches.length > 0 && (
-  <ul className="absolute left-0 right-0 bg-black/80 border border-purple-700 rounded-xl mt-2 shadow-2xl backdrop-blur-md z-50 max-h-60 overflow-y-auto">
-    {matches.map((tut, index) => (
-      <li
-        key={index}
-        onMouseDown={() => handleMatchClick(tut)}
-        className="px-4 py-2 cursor-pointer text-indigo-300 hover:bg-purple-700 hover:text-white transition-all duration-200 text-sm md:text-base"
-      >
-        {tut.title}
-      </li>
-    ))}
-  </ul>
-)}
-
+        <ul className="absolute left-0 right-0 bg-black/30 border border-purple-700 rounded-xl mt-2 shadow-2xl backdrop-blur-md z-50 max-h-60 overflow-y-auto">
+          {matches.map((tut, index) => (
+            <li
+              key={index}
+              onMouseDown={() => handleMatchClick(tut)}
+              className="px-4 py-2 cursor-pointer text-indigo-200 hover:bg-purple-700 hover:text-white transition-all duration-200 text-sm md:text-base"
+            >
+              {tut.title}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

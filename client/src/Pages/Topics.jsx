@@ -40,7 +40,7 @@ const TutorialsPage = () => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-grow">
-          <div className="bg-indigo-500/10 p-6 rounded-2xl border border-purple-500/50 shadow-md h-full flex flex-col">
+          <div className="bg-indigo-500/10 p-6 rounded-2xl border border-purple-500/50 shadow-md h-full flex flex-col cursor-pointer">
             <h3 className="text-2xl font-semibold text-indigo-300 mb-4 text-center">Front-End</h3>
             <div className="flex flex-col gap-3 flex-grow">
               {frontEndTopics.map((topic) => (
@@ -49,7 +49,7 @@ const TutorialsPage = () => {
                   onClick={() => navigate(`/tutorials/${topic.slug}`)}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.05 }}
-                  className="p-3 rounded-xl bg-indigo-500/40 border border-purple-300/30 text-white hover:bg-indigo-400/30 transition"
+                  className="p-3 rounded-xl bg-indigo-500/40 border border-purple-300/30 text-white hover:bg-indigo-400/30 transition cursor-pointer"
                 >
                   {topic.name}
                 </motion.button>
@@ -57,7 +57,7 @@ const TutorialsPage = () => {
             </div>
           </div>
 
-          <div className="bg-indigo-500/10 p-6 rounded-2xl border border-purple-500/50 shadow-md h-full flex flex-col">
+          <div className="bg-indigo-500/10 p-6 rounded-2xl border border-purple-500/50 shadow-md h-full flex flex-col cursor-pointer">
             <h3 className="text-2xl font-semibold text-indigo-300 mb-4 text-center">Back-End</h3>
             <div className="flex flex-col gap-3 flex-grow">
               {backEndTopics.map((topic) => (
@@ -66,7 +66,7 @@ const TutorialsPage = () => {
                   onClick={() => navigate(`/tutorials/${topic.slug}`)}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.05 }}
-                  className="p-3 rounded-xl bg-indigo-500/40 border border-purple-300/30 text-white hover:bg-indigo-400/30 transition"
+                  className="p-3 rounded-xl bg-indigo-500/40 border border-purple-300/30 text-white hover:bg-indigo-400/30 transition cursor-pointer"
                 >
                   {topic.name}
                 </motion.button>
@@ -83,7 +83,7 @@ const TutorialsPage = () => {
                   onClick={() => navigate(`/tutorials/${topic.slug}`)}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.05 }}
-                  className="p-3 rounded-xl bg-indigo-500/40 border border-purple-300/30 text-white hover:bg-indigo-400/30 transition"
+                  className="p-3 rounded-xl bg-indigo-500/40 border border-purple-300/30 text-white hover:bg-indigo-400/30 transition cursor-pointer"
                 >
                   {topic.name}
                 </motion.button>

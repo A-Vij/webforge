@@ -40,8 +40,9 @@ const userSchema = new mongoose.Schema({
     completedQuests: [
         {
             questId: { type: mongoose.SchemaTypes.ObjectId, ref: "System" },
-            current: {type: Number},
-            completed: {type: Boolean},
+            current: {type: Number, default: 0},
+            completed: {type: Boolean, default: false},
+            rewardsClaimed: {type: Boolean, default: false},
             completedAt: { type: Date, default: Date.now},
         }
     ],

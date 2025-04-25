@@ -17,9 +17,9 @@ export function Navbar() {
         await logout();
         toast.success("Logged Out", {
             style: {
-                background: "#1a1a2e",  // Dark background
-                color: "#e0e0ff",     // Light text
-                border: "1px solid #7a00ff",  // Purple border
+                background: "#1a1a2e",  
+                color: "#e0e0ff",     
+                border: "1px solid #7a00ff",  
                 boxShadow: "0 0 10px #7a00ff",
             },
             iconTheme: {
@@ -38,7 +38,7 @@ export function Navbar() {
         <>
             
             <nav className="fixed top-5 left-1/2 transform -translate-x-1/2 px-5 py-3 
-                            dark:bg-black/45 dark:border-4 dark:border-purple-500/50 backdrop-blur-lg shadow-lg rounded-2xl 
+                            dark:bg-black/45 dark:border-4 dark:border-purple-600/80 backdrop-blur-lg shadow-lg rounded-2xl 
                             flex items-center space-x-6 z-50 bg-white">
                 
                 

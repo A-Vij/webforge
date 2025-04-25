@@ -18,6 +18,7 @@ const systemSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    reward : {type: Number},
     requirement : { type: Number }
 });
 const System = mongoose.model('System', systemSchema);
